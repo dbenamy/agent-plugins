@@ -3,7 +3,7 @@
 Cloudkick plugin to search for occurrences of a message in a log file with an
 apache/nginx format timestamp, within the last 5 minutes.
 
-Developed by Daniel Benamy at WNYC
+Developed by Daniel Benamy at WNYC.
 
 Source released under the MIT license.
 
@@ -69,11 +69,12 @@ def read_recent_lines(f, recent):
 #            print 'earliest ts read: %s' % ts
         block -= 1
     
-    # Last block read (first in file) likely starts with a partial line. Get
-    # rid of it.
-    newline = data[-1].find('\n')
-    if newline > 0:
-        data[-1] = data[-1][newline + 1:]
+    if len(data) > 0:
+        # Last block read (first in file) likely starts with a partial line. Get
+        # rid of it.
+        newline = data[-1].find('\n')
+        if newline > 0:
+            data[-1] = data[-1][newline + 1:]
     
     # Put data in file order
     data.reverse()
